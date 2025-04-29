@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biofabrication Solutions</title>
+    <style>
+        :root {
+            --blue: #2b6cb0;
+            --purple: #6b46c1;
+            --pink-orange: #d53f8c;
+            --gradient: linear-gradient(135deg, var(--blue), var(--purple), var(--pink-orange));
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: white;
+            color: var(--blue);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 3rem 0;
+        }
+        
+        .stat-item {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 1rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 250px;
+            border-top: 5px solid var(--blue);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--blue);
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 3rem 0;
+        }
+        
+        .step {
+            flex: 0 0 calc(33% - 2rem);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .step:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient);
+        }
+        
+        .step-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--purple);
+            margin-bottom: 1rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .team-member {
+            text-align: center;
+            max-width: 200px;
+        }
+        
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--purple);
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: var(--gradient);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: white;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            .step {
+                flex: 0 0 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>RxR Biofabrication Solutions</h1>
+            <p class="tagline">Optimizing regenerative manufacturing to solve the organ shortage crisis</p>
+            <a href="#about" class="btn">Learn More</a>
+            <a href="#contact" class="btn btn-secondary">Get Involved</a>
+        </div>
+    </header>
+    
+    <section id="importance" class="container">
+        <h2>The Organ Shortage Crisis</h2>
+        <p>Every day, lives are lost due to the critical shortage of available organs for transplantation. Our mission is to change this reality through innovative biofabrication technology.</p>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">100,000+</div>
+                <p>Patients on the national organ waitlist</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">17</div>
+                <p>People die daily waiting for an organ</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2 in 1000</div>
+                <p>Organ donor deaths result in successful transplants</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="solution" class="container">
+        <h2>Our Solution: Biofabrication</h2>
+        <p>Biofabrication is a revolutionary branch of biotechnology that manufactures living organs and tissues by printing and growing cells. This technology creates personalized organs, slashes wait times, and eliminates rejection.</p>
+        
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">01</div>
+                <h3>Decellularization</h3>
+                <p>Removing all cells from an organ, leaving only the natural scaffold that provides structure and vascular pathways.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <h3>Recellularization</h3>
+                <p>Seeding the scaffold with a patient's own cells to create a fully functional, personalized organ.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">03</div>
+                <h3>Transplantation</h3>
+                <p>Implanting the biofabricated organ with minimal risk of rejection and no need for immunosuppressants.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="project" class="container">
+        <h2>Our Project</h2>
+        <p>Through our collaboration with BioFabUSA and ARMI, we've developed a comprehensive approach to advancing biofabrication technology and education.</p>
+        
+        <div class="process-steps">
+            <div class="step">
+                <h3>Business Plan</h3>
+                <p>Created RxR Solutions, a business model for biofabricating livers, with extensive research into finances, operations, and marketing.</p>
+            </div>
+            <div class="step">
+                <h3>Liver Decellularization</h3>
+                <p>Successfully demonstrated proof-of-concept by decellularizing chicken livers using innovative, cost-effective methods.</p>
+            </div>
+            <div class="step">
+                <h3>STEM Education</h3>
+                <p>Developed and implemented an inspiration-based program to introduce middle school students to biofabrication.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="liver-project" class="container">
+        <h2>Liver Decellularization Breakthrough</h2>
+        <p>We were inspired to attempt decellularizing livers despite the complexity and resource requirements typically associated with this process. Using diced chicken liver and a detergent solution, we achieved promising results that demonstrate the viability of our approach.</p>
+        
+<div class="gallery">
+    <div class="gallery-item">
+        <img src="Images/ourteamworkinginthelab.png" alt="Our team working in the lab">
+        <div class="gallery-caption">Our team working in the lab</div>
+    </div>
+    <div class="gallery-item">
+        <img src="Images/liverdecellularizationprocess.png" alt="Liver decellularization process">
+        <div class="gallery-caption">Liver decellularization process</div>
+    </div>
+    <div class="gallery-item">
+        <img src="Images/analyzingtheresultsunderamicroscope.png" alt="Analyzing results under microscope">
+        <div class="gallery-caption">Analyzing results under microscope</div>
+    </div>
+</div>
+        </div>
+    </section>
+    
+    <section id="education" class="container">
+        <h2>Community Impact</h2>
+        <p>Taking everything we learned and our newfound passion for biofabrication, we created an inspiration-based educational program for middle school students. Our program aims to spark passion early for the field, and is scalable and modular.</p>
+        
+        <div class="process-steps">
+            <div class="step">
+                <h3>Hands-on Learning</h3>
+                <p>Students learn biotech skills like pipetting, aseptic technique, DNA and cell isolation through interactive activities.</p>
+            </div>
+            <div class="step">
+                <h3>Entrepreneurial Thinking</h3>
+                <p>We teach business procedures and production through Shark Tank-like activities that challenge students to think creatively.</p>
+            </div>
+            <div class="step">
+                <h3>Real-world Impact</h3>
+                <p>We've taught over 100 students across multiple schools in Cambridge, Lexington, and Winchester, with plans to expand further.</p>
+            </div>
+        </div>
+    </section>
+    <section id="testimonial" class="container" style="background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%); padding: 3rem; border-radius: 10px; margin: 2rem 0;">
+    <div style="max-width: 800px; margin: 0 auto; position: relative;">
+        <svg style="position: absolute; top: -20px; left: -20px; width: 50px; height: 50px; color: var(--purple);" 
+             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3.691 6.292C5.094 4.771 7.217 4 10 4h1v2.819l-.804.161c-1.37.274-2.323.813-2.833 1.604A2.902 2.902 0 006.925 10H10a1 1 0 011 1v7c0 1.103-.897 2-2 2H3a1 1 0 01-1-1v-5l.003-2.919c-.009-.111-.199-2.741 1.688-4.789zM20 20h-6a1 1 0 01-1-1v-5l.003-2.919c-.009-.111-.199-2.741 1.688-4.789C16.094 4.771 18.217 4 21 4h1v2.819l-.804.161c-1.37.274-2.323.813-2.833 1.604A2.902 2.902 0 0017.925 10H21a1 1 0 011 1v7c0 1.103-.897 2-2 2z"></path>
+        </svg>
+        
+        <blockquote style="font-size: 1.2rem; line-height: 1.6; color: #333; font-style: italic; padding: 2rem;">
+            "The presentation was engaging and very well planned, taking into account the audience age, and the short time of each class.
+            
+            <br><br>
+            I heard lots of student collaboration in product planning and marketing and witnessed intense focus in the pipetting competition.
+            
+            <br><br>
+            This is so important to communicate to middle schoolers who are deciding what direction they may take in high school.
+            
+            <br><br>
+            Based on the caliber of their work I would also love to continue this in future years."
+        </blockquote>
+        
+        <div style="text-align: right; font-weight: bold; color: var(--purple);">
+            — Iona Brightman, Cambridge Public Schools Head of Biology
+        </div>
+    </div>
+</section>
+    <section id="conclusion" class="container">
+        <h2>Shaping the Future of Medicine</h2>
+        <p>There are two parts of science: first, innovation - from observing stars to experimenting with DNA; and second, equally important, perpetuation: inspiring the next generation of scientists. That's what we've accomplished by combining cutting-edge research with community outreach.</p>
+        <p>Through our work with BioFabUSA, our liver decellularization project, and our educational programs, we're not just doing science — we're helping shape its future.</p>
+    </section>
+    
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>RxR Solutions is a student-led initiative focused on advancing biofabrication technology and education to solve the organ shortage crisis.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: xavierreyzuc@gmail.com</p>
+                <p>Phone: (617) 201-6209</p>
+                <div class="social-icons">
+                    <a href="#">⌨</a>
+                    <a href="#">⌨</a>
+                    <a href="#">⌨</a>
+                    <a href="#">⌨</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="#importance">The Problem</a></p>
+                <p><a href="#solution">Our Solution</a></p>
+                <p><a href="#project">Our Work</a></p>
+                <p><a href="#education">Education</a></p>
+            </div>
+        </div>
+        <p>&copy; 2025 RxR Biofabrication Solutions. All rights reserved.</p>
+    </footer>
+</body>
+</html>
